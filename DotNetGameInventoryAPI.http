@@ -1,0 +1,6 @@
+@DotNetGameInventoryAPI_HostAddress = http://localhost:5014
+
+GET {{DotNetGameInventoryAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
