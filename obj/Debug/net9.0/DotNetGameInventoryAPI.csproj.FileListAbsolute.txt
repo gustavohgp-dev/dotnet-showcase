@@ -30,3 +30,6 @@ E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\obj\Debug\net9.0\refint\
 E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\obj\Debug\net9.0\DotNetGameInventoryAPI.pdb
 E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\obj\Debug\net9.0\DotNetGameInventoryAPI.genruntimeconfig.cache
 E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\obj\Debug\net9.0\ref\DotNetGameInventoryAPI.dll
+E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Fork Projects\DotNetInventory\DotNetGameInventoryAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

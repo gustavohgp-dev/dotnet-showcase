@@ -1,24 +1,22 @@
-#region Builder
+using DotNetGameInventoryAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//Builder
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IInventoryService, InventoryService>();
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-#endregion
-
-
-#region App
-
+//App
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
@@ -28,5 +26,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-#endregion
