@@ -1,4 +1,5 @@
 using DotNetGameInventoryAPI.Data;
+using DotNetGameInventoryAPI.Middleware;
 using DotNetGameInventoryAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
