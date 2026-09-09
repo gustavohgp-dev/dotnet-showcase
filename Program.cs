@@ -1,13 +1,17 @@
+using DotNetGameInventoryAPI.Data;
 using DotNetGameInventoryAPI.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 //Builder
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=inventory.db"));
 
 //App
 var app = builder.Build();

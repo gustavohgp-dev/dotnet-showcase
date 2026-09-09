@@ -1,55 +1,61 @@
-﻿namespace DotNetGameInventoryAPI.Services;
+﻿using DotNetGameInventoryAPI.Data;
+using DotNetGameInventoryAPI.Models;
+
+namespace DotNetGameInventoryAPI.Services;
 
 public class InventoryService : IInventoryService
 {
-    private List<InventoryItem> _inventory = new()
+    private readonly AppDbContext _context;
+
+    public InventoryService(AppDbContext context)
     {
-        new InventoryItem { Id = 0, Name = "Iron Sword", Quantity = 1 },
-        new InventoryItem { Id = 1, Name = "Health Potion", Quantity = 5 },
-        new InventoryItem { Id = 2, Name = "Iron Shield", Quantity = 1 }
-    };
+        _context = context;
+    }
     
     public IEnumerable<InventoryItem> GetAll()
     {
-        return _inventory;
+        return _context.InventoryItems.ToList();
     }
     
     public InventoryItem? GetById(int id)
     {
-        return _inventory.FirstOrDefault(i => i.Id == id);
+        return _context.InventoryItems.FirstOrDefault(i => i.Id == id);
     }
     
-    public InventoryItem Create(InventoryItem item)
+    public InventoryItem Create(CreateInventoryItemDto dto)
     {
-        item.Id = _inventory.Count > 0 ? _inventory.Max(i => i.Id) + 1 : 0;
-        _inventory.Add(item);
+        var item = new InventoryItem { Name = dto.Name, Quantity = dto.Quantity };
+        _context.InventoryItems.Add(item);
+        _context.SaveChanges();
         return item;
     }
 
-    public InventoryItem? Update(int id, InventoryItem item)
+    public InventoryItem? Update(int id, UpdateInventoryItemDto dto)
     {
-        InventoryItem? targetItem =  _inventory.FirstOrDefault(i => i.Id == id);
+        InventoryItem? targetItem =  _context.InventoryItems.FirstOrDefault(i => i.Id == id);
 
         if (targetItem == null)
         {
             return null;
         }
 
-        targetItem.Name = item.Name;
-        targetItem.Quantity = item.Quantity;
-        
+        targetItem.Name = dto.Name;
+        targetItem.Quantity = dto.Quantity;
+
+        _context.SaveChanges();
         return targetItem;
     }
 
     public bool Delete(int id)
     {
-        InventoryItem? item =  _inventory.FirstOrDefault(i => i.Id == id);
+        InventoryItem? item =  _context.InventoryItems.FirstOrDefault(i => i.Id == id);
 
         if (item == null)
         {
             return false;
         }
-        _inventory.Remove(item);
+        _context.InventoryItems.Remove(item);
+        _context.SaveChanges();
         return true;
     }
 }
