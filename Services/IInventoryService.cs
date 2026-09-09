@@ -1,11 +1,12 @@
-﻿namespace DotNetGameInventoryAPI.Services;
-using DotNetGameInventoryAPI;
+﻿using DotNetGameInventoryAPI.Models;
+
+namespace DotNetGameInventoryAPI.Services;
 
 public interface IInventoryService
 {
     IEnumerable<InventoryItem> GetAll();
     InventoryItem? GetById(int id);
-    InventoryItem Create(InventoryItem item);
-    InventoryItem? Update(int id, InventoryItem item);
+    InventoryItem Create(CreateInventoryItemDto dto);
+    InventoryItem? Update(int id, UpdateInventoryItemDto dto);
     bool Delete(int id);
 }

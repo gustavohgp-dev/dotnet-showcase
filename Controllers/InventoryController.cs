@@ -1,6 +1,8 @@
-﻿namespace DotNetGameInventoryAPI.Controllers;
+﻿using DotNetGameInventoryAPI.Models;
+using DotNetGameInventoryAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Services;
+
+namespace DotNetGameInventoryAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -33,16 +35,16 @@ public class InventoryController: ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<InventoryItem> Create([FromBody] InventoryItem item)
+    public ActionResult<InventoryItem> Create([FromBody] CreateInventoryItemDto dto)
     {
-        var createdItem = _inventoryService.Create(item);
+        var createdItem = _inventoryService.Create(dto);
         return CreatedAtAction(nameof(GetById), new { id = createdItem.Id }, createdItem);
     }
 
     [HttpPut("{id}")]
-    public ActionResult<InventoryItem> Update(int id, [FromBody] InventoryItem item)
+    public ActionResult<InventoryItem> Update(int id, [FromBody] UpdateInventoryItemDto dto)
     {
-       InventoryItem? updatedItem = _inventoryService.Update(id, item);
+       InventoryItem? updatedItem = _inventoryService.Update(id, dto);
        
        if (updatedItem == null)
        {
