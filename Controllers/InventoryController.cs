@@ -1,5 +1,6 @@
 ﻿using DotNetGameInventoryAPI.Models;
 using DotNetGameInventoryAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetGameInventoryAPI.Controllers;
@@ -34,6 +35,7 @@ public class InventoryController: ControllerBase
         return Ok(item);
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult<InventoryItem> Create([FromBody] CreateInventoryItemDto dto)
     {
@@ -41,6 +43,7 @@ public class InventoryController: ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = createdItem.Id }, createdItem);
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     public ActionResult<InventoryItem> Update(int id, [FromBody] UpdateInventoryItemDto dto)
     {
@@ -54,6 +57,7 @@ public class InventoryController: ControllerBase
        return Ok(updatedItem);
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {
