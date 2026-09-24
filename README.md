@@ -27,20 +27,25 @@ development to .NET backend engineering.
 - Docker
 
 ## Project Structure
-GameInventoryApi/
-├── Controllers/ # HTTP layer — routing and status codes
-│ ├── AuthController.cs
-│ └── InventoryController.cs
-├── Data/ # EF Core DbContext
-├── Middleware/ # Global exception handling
-├── Migrations/ # EF Core database migrations
-├── Models/ # Entities and DTOs
-├── Services/ # Business logic layer
-├── Program.cs # App startup and DI registration
-└── Dockerfile # Multi-stage container build
 
-GameInventoryApi.Tests/
-└── InventoryServiceTests.cs # 6 unit tests
+### API Project
+| Folder / File | Purpose |
+|---|---|
+| `Controllers/` | HTTP layer — routing and status codes |
+| `Controllers/AuthController.cs` | Login endpoint, JWT token generation |
+| `Controllers/InventoryController.cs` | Full CRUD endpoints |
+| `Data/` | EF Core DbContext |
+| `Middleware/` | Global exception handling |
+| `Migrations/` | EF Core auto-generated database schema |
+| `Models/` | Entities and DTOs |
+| `Services/` | Business logic layer |
+| `Program.cs` | App startup, DI registration, middleware pipeline |
+| `Dockerfile` | Multi-stage container build |
+
+### Test Project
+| File | Purpose |
+|---|---|
+| `InventoryServiceTests.cs` | 6 unit tests covering full CRUD on the service layer |
 
 ## API Endpoints
 
